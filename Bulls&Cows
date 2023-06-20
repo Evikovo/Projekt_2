@@ -60,7 +60,6 @@ while bull < 4:
             print("That's average")
         else:
             print("That's not so good")
-
         break
     elif bull == 1 and cow == 1:
         print(bull, "bull", cow, "cow")
