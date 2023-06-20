@@ -1,0 +1,73 @@
+"""
+projekt_2.py: druhý projekt do Engeto Online Python Akademie
+
+author: Eva Hercíková
+email: eva.hercikova@gmail.com
+discord: eva.hercikova#1247
+"""
+import random
+
+oddel = ("-" * 50)
+print("Hi there!")
+print(oddel)
+print("I've generated a random 4 digit number for you. \nLet's play a bulls and cows game.")
+print(oddel)
+print("Enter your number: ")
+print(oddel)
+
+#generování hádaného čísla
+moznosti = list(range(1, 10))
+hadane = []
+hadac = 0
+poradi = 1
+i = 0
+cow = 0
+bull = 0
+tip = 0
+
+while poradi < 5:
+    i = random.choice(moznosti)
+    moznosti.remove(i)
+    hadane.append(i)
+    if poradi == 1:
+        moznosti.append(0)
+    poradi += 1
+    print(hadane)
+
+#ověření volby
+while bull < 4:
+    while True:
+        hadac = input(">>> ")
+        if hadac.isdigit() and len(set(hadac)) == 4 and int(hadac[0]) != 0:
+            break
+        print("Nesprávná volba, zkus to znovu")
+
+    cow = 0
+    bull = 0
+    for cislo in range(0, 4):
+        if hadac[cislo] in str(hadane):
+            if hadac[cislo] == str(hadane[cislo]):
+                bull += 1
+            else:
+                cow += 1
+    tip += 1
+    if bull == 4:
+        print("Correct, you've guessed the right number")
+        print("in", tip, "guesses!")
+        if tip <= 3:
+            print("That's amazing")
+        elif tip > 3 and tip <= 7:
+            print("That's average")
+        else:
+            print("That's not so good")
+
+        break
+    elif bull == 1 and cow == 1:
+        print(bull, "bull", cow, "cow")
+    elif bull == 1 and cow != 1:
+        print(bull, "bull", cow, "cows")
+    elif bull != 1 and cow == 1:
+        print(bull, "bulls", cow, "cow")
+    else:
+        print(bull, "bulls", cow, "cows")
+    print(oddel)
